@@ -1,0 +1,30 @@
+{
+  "name": "aws-cdk-dynamodb-seeder",
+  "version": "1.0.0",
+  "description": "aws-cdk-dynamodb-seeder",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elegantdevelopment/aws-cdk-dynamodb-seeder.git"
+  },
+  "keywords": [
+    "aws",
+    "cdk",
+    "dynamodb",
+    "seed"
+  ],
+  "author": "Justin Taylor <jtaylor@elegantdevelopment.co.uk> (https://www.linkedin.com/in/jsdtaylor)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/elegantdevelopment/aws-cdk-dynamodb-seeder/issues"
+  },
+  "homepage": "https://github.com/elegantdevelopment/aws-cdk-dynamodb-seeder#readme",
+  "dependencies": {
+    "@aws-cdk/aws-dynamodb": "^1.25.0",
+    "@aws-cdk/core": "^1.25.0",
+    "@aws-cdk/custom-resources": "^1.25.0",
+    "aws-sdk": "^2.621.0"
+  }
+}
