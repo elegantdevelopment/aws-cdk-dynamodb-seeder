@@ -16,6 +16,7 @@ export class Seeder extends Construct {
       RequestItems: {},
     };
     parameters.RequestItems[props.tableName] = this.convertToDynamoJson(props.json);
+    /* tslint:disable-next-line */
     new AwsCustomResource(this, 'Seeder', {
       onCreate: {
         service: 'DynamoDB',

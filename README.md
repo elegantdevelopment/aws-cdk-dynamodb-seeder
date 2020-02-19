@@ -15,6 +15,8 @@ However, building dev or test environments that come pre-populated with data can
 ## How do I use it
 
 ```ts
+import { Seeder } from 'aws-cdk-dynamodb-seeder';
+...
 new Seeder(stack, 'MySeeder', {
     table: new Table(stack, 'MyTable', {
         tableName: 'MyTable',
