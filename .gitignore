@@ -6,3 +6,6 @@ node_modules/
 
 # Output of 'npm pack'
 *.tgz
+
+# Output of 'npm run build'
+lib/
