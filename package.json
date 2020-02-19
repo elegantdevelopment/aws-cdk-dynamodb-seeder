@@ -1,10 +1,14 @@
 {
   "name": "aws-cdk-dynamodb-seeder",
   "version": "1.0.0",
-  "description": "aws-cdk-dynamodb-seeder",
+  "description": "A simple CDK JSON seeder for DynamoDB",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "test": "jest",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json"
   },
+  "main": "seeder.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/elegantdevelopment/aws-cdk-dynamodb-seeder.git"
@@ -13,7 +17,8 @@
     "aws",
     "cdk",
     "dynamodb",
-    "seed"
+    "seed",
+    "json"
   ],
   "author": "Justin Taylor <jtaylor@elegantdevelopment.co.uk> (https://www.linkedin.com/in/jsdtaylor)",
   "license": "Apache-2.0",
@@ -26,5 +31,41 @@
     "@aws-cdk/core": "^1.25.0",
     "@aws-cdk/custom-resources": "^1.25.0",
     "aws-sdk": "^2.621.0"
-  }
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "^1.25.0",
+    "@types/jest": "^25.1.2",
+    "@types/node": "^13.7.2",
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1",
+    "ts-jest": "^25.2.1",
+    "tslint": "^6.0.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.7.5"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "globals": {
+      "ts-jest": {
+        "diagnostics": {
+          "warnOnly": true
+        }
+      },
+      "testEnvironment": "node"
+    }
+  },
+  "files": [
+    "lib/**/*"
+  ]
 }
