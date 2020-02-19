@@ -25,5 +25,11 @@ new Seeder(stack, 'MySeeder', {
 });
 ```
 
+### Importing seed data
+
+Seed data is imported via a JSON file and can either be a single object or an array of objects.
+
+Just remember that the objects *must* match your table's key definitions.
+
    [AWS CDK]: https://aws.amazon.com/cdk
    [Amazon DynamoDB]: https://aws.amazon.com/dynamodb
