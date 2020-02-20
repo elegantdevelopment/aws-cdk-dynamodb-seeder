@@ -1,6 +1,7 @@
 # aws-cdk-dynamodb-seeder
 
 ![Node.js CI](https://github.com/elegantdevelopment/aws-cdk-dynamodb-seeder/workflows/Node.js%20CI/badge.svg)
+[![npm version](https://badge.fury.io/js/aws-cdk-dynamodb-seeder.svg)](https://badge.fury.io/js/aws-cdk-dynamodb-seeder)
 
 A simple CDK JSON seeder for DynamoDB
 
@@ -13,6 +14,14 @@ Using [AWS CDK] for automating infratructure deployments is an amazing way of in
 However, building dev or test environments that come pre-populated with data can be tricky, especially when using [Amazon DynamoDB].
 
 ## How do I use it
+
+Install using your favourite package manager:
+
+```sh
+yarn add aws-cdk-dynamodb-seeder
+```
+
+Here is an implementation example:
 
 ```ts
 import { Seeder } from 'aws-cdk-dynamodb-seeder';
