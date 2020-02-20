@@ -2,6 +2,7 @@
 
 ![Node.js CI](https://github.com/elegantdevelopment/aws-cdk-dynamodb-seeder/workflows/Node.js%20CI/badge.svg)
 [![npm version](https://badge.fury.io/js/aws-cdk-dynamodb-seeder.svg)](https://badge.fury.io/js/aws-cdk-dynamodb-seeder)
+![npm](https://img.shields.io/npm/dt/aws-cdk-dynamodb-seeder)
 
 A simple CDK JSON seeder for DynamoDB
 
