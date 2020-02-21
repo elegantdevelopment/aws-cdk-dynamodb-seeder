@@ -1,6 +1,7 @@
 # aws-cdk-dynamodb-seeder
 
 ![Node.js CI](https://github.com/elegantdevelopment/aws-cdk-dynamodb-seeder/workflows/Node.js%20CI/badge.svg)
+[![codecov](https://codecov.io/gh/elegantdevelopment/aws-cdk-dynamodb-seeder/branch/master/graph/badge.svg)](https://codecov.io/gh/elegantdevelopment/aws-cdk-dynamodb-seeder)
 [![npm version](https://badge.fury.io/js/aws-cdk-dynamodb-seeder.svg)](https://badge.fury.io/js/aws-cdk-dynamodb-seeder)
 ![npm](https://img.shields.io/npm/dt/aws-cdk-dynamodb-seeder)
 
@@ -41,7 +42,7 @@ new Seeder(stack, "MySeeder", {
 
 ### Importing seed data
 
-Seed data is imported/deleted via an arrays of objects.
+Seed data is imported/deleted via an arrays of objects. 
 Just remember that the objects _must_ match your table's key definitions.
 
 [aws cdk]: https://aws.amazon.com/cdk
