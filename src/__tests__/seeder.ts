@@ -2,7 +2,7 @@ import { Stack } from '@aws-cdk/core';
 import { Table, AttributeType } from '@aws-cdk/aws-dynamodb';
 import '@aws-cdk/assert/jest';
 
-import { Seeder } from '../seeder';
+import { Seeder } from '../index';
 
 test('creates a custom resource to seed a table', () => {
   const stack = new Stack();
@@ -11,9 +11,25 @@ test('creates a custom resource to seed a table', () => {
       tableName: 'TestTable',
       partitionKey: { name: 'Id', type: AttributeType.STRING },
     }),
-    tableName: "TestTable",
-    json: require("./data.json")
+    tableName: 'TestTable',
+    setup: require('./put.json'),
   });
 
-  expect(stack).toHaveResource("Custom::AWS");
+  expect(stack).toHaveResource('Custom::AWS');
+});
+
+test('fails if no setup prop provided', () => {
+  const stack = new Stack();
+
+  expect(
+    () =>
+      new Seeder(stack, 'Seeder', {
+        table: new Table(stack, 'TestTable', {
+          tableName: 'TestTable',
+          partitionKey: { name: 'Id', type: AttributeType.STRING },
+        }),
+        tableName: 'TestTable',
+        setup: undefined,
+      }),
+  ).toThrowError("setup value must be an array of JSON objects");
 });

@@ -1,11 +1,8 @@
-# Dependency directories
+# npm
 node_modules/
-
-# Optional npm cache directory
 .npm
-
-# Output of 'npm pack'
 *.tgz
-
-# Output of 'npm run build'
 lib/
+
+# code coverage
+coverage/

@@ -1,6 +1,6 @@
 {
   "name": "aws-cdk-dynamodb-seeder",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A simple CDK JSON seeder for DynamoDB",
   "scripts": {
     "build": "tsc",
@@ -14,8 +14,8 @@
     "test": "jest",
     "version": "npm run format && git add -A src"
   },
-  "main": "lib/seeder.js",
-  "types": "lib/seeder.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/elegantdevelopment/aws-cdk-dynamodb-seeder.git"
@@ -25,7 +25,7 @@
     "cdk",
     "dynamodb",
     "seed",
-    "json"
+    "seeder"
   ],
   "author": "Justin Taylor <jtaylor@elegantdevelopment.co.uk> (https://www.linkedin.com/in/jsdtaylor)",
   "license": "Apache-2.0",
