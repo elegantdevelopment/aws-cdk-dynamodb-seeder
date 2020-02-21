@@ -22,26 +22,27 @@ Install using your favourite package manager:
 yarn add aws-cdk-dynamodb-seeder
 ```
 
-Here is an implementation example:
+### Example usage
 
 ```ts
 import { Seeder } from 'aws-cdk-dynamodb-seeder';
 ...
-new Seeder(stack, 'MySeeder', {
-    table: new Table(stack, 'MyTable', {
-        tableName: 'MyTable',
-        partitionKey: { name: 'Id', type: AttributeType.STRING },
-    }),
-    tableName: "TestTable",
-    json: require("./my-seed-data.json")
+const myTable = new Table(stack, "MyTable", {
+    tableName: "MyTable",
+    partitionKey: { name: "Id", type: AttributeType.STRING },
+});
+...
+new Seeder(stack, "MySeeder", {
+    table: myTable,
+    tableName: "MyTable",
+    setup: require("./my-seed-data.json")
 });
 ```
 
 ### Importing seed data
 
-Seed data is imported via a JSON file and can either be a single object or an array of objects.
+Seed data is imported/deleted via an arrays of objects.
+Just remember that the objects _must_ match your table's key definitions.
 
-Just remember that the objects *must* match your table's key definitions.
-
-   [AWS CDK]: https://aws.amazon.com/cdk
-   [Amazon DynamoDB]: https://aws.amazon.com/dynamodb
+[aws cdk]: https://aws.amazon.com/cdk
+[amazon dynamodb]: https://aws.amazon.com/dynamodb
