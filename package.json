@@ -35,14 +35,19 @@
   "homepage": "https://github.com/elegantdevelopment/aws-cdk-dynamodb-seeder#readme",
   "dependencies": {
     "@aws-cdk/aws-dynamodb": "^1.25.0",
+    "@aws-cdk/aws-lambda": "^1.25.0",
+    "@aws-cdk/aws-s3": "^1.25.0",
+    "@aws-cdk/aws-s3-deployment": "^1.25.0",
     "@aws-cdk/core": "^1.25.0",
     "@aws-cdk/custom-resources": "^1.25.0",
-    "aws-sdk": "^2.621.0"
+    "aws-sdk": "^2.621.0",
+    "tmp": "^0.1.0"
   },
   "devDependencies": {
     "@aws-cdk/assert": "^1.25.0",
     "@types/jest": "^25.1.2",
     "@types/node": "^13.7.2",
+    "@types/tmp": "^0.1.0",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
     "prettier": "^1.19.1",
