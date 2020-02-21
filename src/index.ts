@@ -3,6 +3,7 @@ import { Table } from '@aws-cdk/aws-dynamodb';
 import { Function, Runtime, Code } from '@aws-cdk/aws-lambda';
 import { Bucket } from '@aws-cdk/aws-s3';
 import { BucketDeployment, Source } from '@aws-cdk/aws-s3-deployment';
+import { AwsCustomResource } from '@aws-cdk/custom-resources';
 import * as tmp from 'tmp';
 import * as fs from 'fs';
 
@@ -32,22 +33,23 @@ export class Seeder extends Construct {
     this.props = props;
 
     const destinationBucket = new Bucket(this, 'acds-bucket', {
-      removalPolicy: RemovalPolicy.DESTROY
+      removalPolicy: RemovalPolicy.DESTROY,
     });
     tmp.setGracefulCleanup();
     tmp.dir((err, dir) => {
       if (err) throw err;
-      this.writeTempFile(dir, "setup.json", props.setup);
+      this.writeTempFile(dir, 'setup.json', props.setup);
       if (props.teardown) {
-        this.writeTempFile(dir, "teardown.json", props.teardown);
+        this.writeTempFile(dir, 'teardown.json', props.teardown);
       }
       new BucketDeployment(this, id, {
         sources: [Source.asset(dir)],
         destinationBucket,
+        retainOnDelete: false,
       });
     });
 
-    const setupFn = new Function(this, 'setup', {
+    const fn = new Function(this, 'handler', {
       runtime: Runtime.NODEJS_12_X,
       handler: 'index.handler',
       code: Code.fromInline(`
@@ -56,68 +58,85 @@ console.log('function loaded');
 const AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 
-exports.handler = async () => {
+const writeTypeFromAction = (action) => {
+  if (action === "put")
+    return "Item";
+  if (action === "delete")
+    return "Key";
+}
+
+const run = async (filename, action) => {
   console.log('reading from s3');
-  const setup = await s3.getObject({
+  const data = await s3.getObject({
     Bucket: "${destinationBucket.bucketName}", 
-    Key: "setup.json"
+    Key: filename
   }).promise();
   console.log('finished reading from s3');
   
   console.log('transforming seed data');
-  const seed = JSON.parse(setup.Body.toString());
+  const seed = JSON.parse(data.Body.toString());
   console.log('finished transforming seed data');
   
   const documentClient = new AWS.DynamoDB.DocumentClient();
   console.log('sending data to dynamodb');
   for(let i = 0; i < seed.length;i++) {
-    console.log(\`putting #$\{i+1\}\`);
-    await documentClient.put({
+    await documentClient[action]({
       TableName: '${props.tableName}',
-      Item: seed[i]
+      [writeTypeFromAction(action)]: seed[i]
     }).promise();
   };
   console.log('finished sending data to dynamodb');
+}
+
+exports.handler = async (event) => {
+  if (event.mode === "delete" || event.mode === "update")
+    await run("teardown.json", "delete");
+  if (event.mode === "create" || event.mode === "update")
+    await run("setup.json", "put");
 }`),
     });
-    destinationBucket.grantRead(setupFn);
-    props.table.grantWriteData(setupFn);
+    destinationBucket.grantRead(fn);
+    props.table.grantWriteData(fn);
 
-    const teardownFn = new Function(this, 'teardown', {
-      runtime: Runtime.NODEJS_12_X,
-      handler: 'index.handler',
-      code: Code.fromInline(`
-console.log('function loaded');
-
-const AWS = require('aws-sdk');
-const s3 = new AWS.S3();
-
-exports.handler = async () => {
-  console.log('reading from s3');
-  const setup = await s3.getObject({
-    Bucket: "${destinationBucket.bucketName}", 
-    Key: "teardown.json"
-  }).promise();
-  console.log('finished reading from s3');
-  
-  console.log('transforming seed data');
-  const seed = JSON.parse(setup.Body.toString());
-  console.log('finished transforming seed data');
-  
-  const documentClient = new AWS.DynamoDB.DocumentClient();
-  console.log('sending data to dynamodb');
-  for(let i = 0; i < seed.length;i++) {
-    console.log(\`deleting #$\{i+1\}\`);
-    await documentClient.delete({
-      TableName: '${props.tableName}',
-      Key: seed[i]
-    }).promise();
-  };
-  console.log('finished sending data to dynamodb');
-}`),
+    const onEvent = new AwsCustomResource(this, 'on-event', {
+      onCreate: {
+        ...this.callLambdaOptions(),
+        parameters: {
+          FunctionName: fn.functionArn,
+          InvokeArgs: JSON.stringify({
+            mode: 'create',
+          }),
+        },
+      },
+      onDelete: props.teardown ? {
+        ...this.callLambdaOptions(),
+        parameters: {
+          FunctionName: fn.functionArn,
+          InvokeArgs: JSON.stringify({
+            mode: 'delete',
+          }),
+        },
+      } : undefined,
+      onUpdate: props.refreshOnUpdate ? {
+        ...this.callLambdaOptions(),
+        parameters: {
+          FunctionName: fn.functionArn,
+          InvokeArgs: JSON.stringify({
+            mode: 'update',
+          }),
+        },
+      } : undefined,
     });
-    destinationBucket.grantRead(teardownFn);
-    props.table.grantWriteData(teardownFn);
+    fn.grantInvoke(onEvent);
+  }
+
+  private callLambdaOptions() {
+    return {
+      service: 'Lambda',
+      action: 'invokeAsync',
+      apiVersion: '2015-03-31',
+      physicalResourceId: `${this.props.table.tableArn}-seeder`,
+    };
   }
 
   private writeTempFile(dir: string, filename: string, data: any) {
