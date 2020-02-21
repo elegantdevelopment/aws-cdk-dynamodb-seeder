@@ -11,9 +11,25 @@ test('creates a custom resource to seed a table', () => {
       tableName: 'TestTable',
       partitionKey: { name: 'Id', type: AttributeType.STRING },
     }),
-    tableName: "TestTable",
-    json: require("./data.json")
+    tableName: 'TestTable',
+    json: require('./data.json'),
   });
 
-  expect(stack).toHaveResource("Custom::AWS");
+  expect(stack).toHaveResource('Custom::AWS');
+});
+
+test('fails if no json provided', () => {
+  const stack = new Stack();
+
+  expect(
+    () =>
+      new Seeder(stack, 'Seeder', {
+        table: new Table(stack, 'TestTable', {
+          tableName: 'TestTable',
+          partitionKey: { name: 'Id', type: AttributeType.STRING },
+        }),
+        tableName: 'TestTable',
+        json: undefined,
+      }),
+  ).toThrowError("supplied data must be a JSON object or an array of JSON objects");
 });
