@@ -6,5 +6,5 @@
 
 <!-- 
 Please read the contribution guidelines and follow the pull-request checklist:
-https://github.com/aws/aws-cdk/blob/master/CONTRIBUTING.md
+https://github.com/elegantdevelopment/aws-cdk-dynamodb-seeder/blob/master/CONTRIBUTING.md
  -->
