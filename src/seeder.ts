@@ -6,8 +6,16 @@ import { Converter, BatchWriteItemInput, WriteRequest } from 'aws-sdk/clients/dy
 export interface Props {
   table: Table;
   tableName: string;
-  json: object;
-  teardown?: boolean;
+  setup: Item[];
+  teardown?: ItemKey[];
+}
+
+interface ItemKey {
+  [key: string]: string | number;
+}
+
+interface Item {
+  [key: string]: any;
 }
 
 interface SDKCall {
@@ -18,25 +26,45 @@ interface SDKCall {
   parameters: BatchWriteItemInput;
 }
 
+type Mode = 'Delete' | 'Put';
+type WriteData = ItemKey | Item;
+
 export class Seeder extends Construct {
   protected props: Props;
   constructor(scope: Construct, id: string, props: Props) {
     super(scope, id);
+    if (!props.setup || !Array.isArray(props.setup)) throw new Error('setup value must be an array of JSON objects');
+    if (props.teardown && !Array.isArray(props.teardown))
+      throw new Error('teardown value must be an array of JSON objects or undefined');
     this.props = props;
     new AwsCustomResource(this, 'Seeder', {
-      onCreate: this.batchPut(),
-      // onDelete: props.teardown ? this.batchDelete() : undefined,
+      onCreate: this.batchWrite('Put'),
+      onDelete: props.teardown ? this.batchWrite('Delete') : undefined,
     });
   }
-  protected batchPut(): SDKCall {
+  private batchWrite(mode: Mode): SDKCall {
     return {
       ...this.batchWriteOptions(),
       parameters: {
         RequestItems: {
-          [this.props.tableName]: this.convertToBatchPut(this.props.json),
+          [this.props.tableName]: (this.props[this.inputPropKeyFromMode(mode)]! as WriteData[]).map(
+            (writeData: WriteData): WriteRequest => {
+              return {
+                [`${mode}Request`]: {
+                  [this.batchWriteTypeFromMode(mode)]: Converter.marshall(writeData),
+                },
+              };
+            },
+          ),
         },
       },
     };
+  }
+  private inputPropKeyFromMode(mode: Mode) {
+    return mode === 'Put' ? 'setup' : 'teardown';
+  }
+  private batchWriteTypeFromMode(mode: Mode) {
+    return mode === 'Put' ? 'Item' : 'Key';
   }
   protected batchWriteOptions() {
     return {
@@ -45,16 +73,5 @@ export class Seeder extends Construct {
       apiVersion: '2012-08-10',
       physicalResourceId: `${this.props.table.tableArn}Seeder`,
     };
-  }
-  protected convertToBatchPut(data: any): WriteRequest[] {
-    if (typeof data === 'object') data = [data];
-    else if (!Array.isArray(data)) throw new Error('supplied data must be a JSON object or an array of JSON objects');
-    return data.map((record: { [key: string]: any }) => {
-      return {
-        PutRequest: {
-          Item: Converter.marshall(record),
-        },
-      };
-    });
   }
 }

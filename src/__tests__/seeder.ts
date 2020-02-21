@@ -12,13 +12,13 @@ test('creates a custom resource to seed a table', () => {
       partitionKey: { name: 'Id', type: AttributeType.STRING },
     }),
     tableName: 'TestTable',
-    json: require('./data.json'),
+    setup: require('./put.json'),
   });
 
   expect(stack).toHaveResource('Custom::AWS');
 });
 
-test('fails if no json provided', () => {
+test('fails if no setup prop provided', () => {
   const stack = new Stack();
 
   expect(
@@ -29,7 +29,7 @@ test('fails if no json provided', () => {
           partitionKey: { name: 'Id', type: AttributeType.STRING },
         }),
         tableName: 'TestTable',
-        json: undefined,
+        setup: undefined,
       }),
-  ).toThrowError("supplied data must be a JSON object or an array of JSON objects");
+  ).toThrowError("setup value must be an array of JSON objects");
 });
