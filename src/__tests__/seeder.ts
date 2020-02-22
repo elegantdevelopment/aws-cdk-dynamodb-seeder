@@ -13,9 +13,12 @@ test('creates a custom resource to seed a table', () => {
     }),
     tableName: 'TestTable',
     setup: require('./put.json'),
+    teardown: require('./delete.json'),
+    refreshOnUpdate: true
   });
 
-  expect(stack).toHaveResource('Custom::AWS');
+  expect(stack).toHaveResource('AWS::Lambda::Function');
+  expect(stack).toHaveResource('AWS::S3::Bucket');
 });
 
 test('fails if no setup prop provided', () => {
