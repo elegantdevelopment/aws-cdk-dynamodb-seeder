@@ -63,8 +63,8 @@
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "**/*.ts",
-      "!**/node_modules/**"
+      "src/*.ts",
+      "!node_modules/**"
     ],
     "moduleFileExtensions": [
       "ts",

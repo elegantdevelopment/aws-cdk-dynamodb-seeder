@@ -13,24 +13,26 @@ test('creates a custom resource to seed a table', () => {
     }),
     tableName: 'TestTable',
     setup: require('./put.json'),
+    teardown: require('./delete.json'),
+    refreshOnUpdate: true
   });
 
   expect(stack).toHaveResource('AWS::Lambda::Function');
   expect(stack).toHaveResource('AWS::S3::Bucket');
 });
 
-// test('fails if no setup prop provided', () => {
-//   const stack = new Stack();
+test('fails if no setup prop provided', () => {
+  const stack = new Stack();
 
-//   expect(
-//     () =>
-//       new Seeder(stack, 'Seeder', {
-//         table: new Table(stack, 'TestTable', {
-//           tableName: 'TestTable',
-//           partitionKey: { name: 'Id', type: AttributeType.STRING },
-//         }),
-//         tableName: 'TestTable',
-//         setup: undefined,
-//       }),
-//   ).toThrowError("setup value must be an array of JSON objects");
-// });
+  expect(
+    () =>
+      new Seeder(stack, 'Seeder', {
+        table: new Table(stack, 'TestTable', {
+          tableName: 'TestTable',
+          partitionKey: { name: 'Id', type: AttributeType.STRING },
+        }),
+        tableName: 'TestTable',
+        setup: undefined,
+      }),
+  ).toThrowError("setup value must be an array of JSON objects");
+});

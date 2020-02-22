@@ -28,8 +28,6 @@ export class Seeder extends Construct {
   constructor(scope: Construct, id: string, props: Props) {
     super(scope, id);
     if (!props.setup || !Array.isArray(props.setup)) throw new Error('setup value must be an array of JSON objects');
-    if (props.teardown && !Array.isArray(props.teardown))
-      throw new Error('teardown value must be an array of JSON objects or undefined');
     this.props = props;
 
     const destinationBucket = new Bucket(this, 'acds-bucket', {
