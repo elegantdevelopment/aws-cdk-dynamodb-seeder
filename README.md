@@ -42,6 +42,8 @@ new Seeder(stack, "MySeeder", {
 });
 ```
 
+For a more in-depth example, see: [elegantdevelopment/aws-cdk-dynamodb-seeder-examples](https://github.com/elegantdevelopment/aws-cdk-dynamodb-seeder-examples).
+
 ### Importing seed data
 
 Data passed into `setup` ("Items" to put) or `teardown` ("Keys" to delete) should be an `array` of JavaScript objects (that are, in turn, representations of `string` to [AttributeValue] maps).
