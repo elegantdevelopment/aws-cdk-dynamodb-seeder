@@ -36,14 +36,22 @@ const myTable = new Table(stack, "MyTable", {
 new Seeder(stack, "MySeeder", {
     table: myTable,
     tableName: "MyTable",
-    setup: require("./my-seed-data.json")
+    setup: require("./items-to-put.json"),
+    teardown: require("./keys-to-delete.json"),
+    refreshOnUpdate: true  // runs setup and teardown on every update, default false
 });
 ```
 
 ### Importing seed data
 
-Seed data is imported/deleted via an arrays of objects. 
-Just remember that the objects _must_ match your table's key definitions.
+Data passed into `setup` ("Items" to put) or `teardown` ("Keys" to delete) should be an `array` of JavaScript objects (that are, in turn, representations of `string` to [AttributeValue] maps).
+
+* `setup` elements should use the format of `params.Item` from [AWS.DynamoDB.DocumentClient.put()]
+* `teardown` elements should use the format of `params.Key` from [AWS.DynamoDB.DocumentClient.delete()]
 
 [aws cdk]: https://aws.amazon.com/cdk
 [amazon dynamodb]: https://aws.amazon.com/dynamodb
+
+[AttributeValue]: https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_AttributeValue.html
+[AWS.DynamoDB.DocumentClient.put()]: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#put-property
+[AWS.DynamoDB.DocumentClient.delete()]: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#delete-property
