@@ -3,7 +3,7 @@ import { Table } from '@aws-cdk/aws-dynamodb';
 import { Function, Runtime, Code } from '@aws-cdk/aws-lambda';
 import { Bucket } from '@aws-cdk/aws-s3';
 import { BucketDeployment, Source } from '@aws-cdk/aws-s3-deployment';
-import { AwsCustomResource } from '@aws-cdk/custom-resources';
+import { AwsCustomResource, AwsSdkCall } from '@aws-cdk/custom-resources';
 import * as tmp from 'tmp';
 import * as fs from 'fs';
 
@@ -20,7 +20,7 @@ interface ItemKey {
 }
 
 interface Item {
-  [key: string]: any;
+  [key: string]: object;
 }
 
 export class Seeder extends Construct {
@@ -106,29 +106,33 @@ exports.handler = async (event) => {
           }),
         },
       },
-      onDelete: props.teardown ? {
-        ...this.callLambdaOptions(),
-        parameters: {
-          FunctionName: fn.functionArn,
-          InvokeArgs: JSON.stringify({
-            mode: 'delete',
-          }),
-        },
-      } : undefined,
-      onUpdate: props.refreshOnUpdate ? {
-        ...this.callLambdaOptions(),
-        parameters: {
-          FunctionName: fn.functionArn,
-          InvokeArgs: JSON.stringify({
-            mode: 'update',
-          }),
-        },
-      } : undefined,
+      onDelete: props.teardown
+        ? {
+            ...this.callLambdaOptions(),
+            parameters: {
+              FunctionName: fn.functionArn,
+              InvokeArgs: JSON.stringify({
+                mode: 'delete',
+              }),
+            },
+          }
+        : undefined,
+      onUpdate: props.refreshOnUpdate
+        ? {
+            ...this.callLambdaOptions(),
+            parameters: {
+              FunctionName: fn.functionArn,
+              InvokeArgs: JSON.stringify({
+                mode: 'update',
+              }),
+            },
+          }
+        : undefined,
     });
     fn.grantInvoke(onEvent);
   }
 
-  private callLambdaOptions() {
+  private callLambdaOptions(): AwsSdkCall {
     return {
       service: 'Lambda',
       action: 'invokeAsync',
@@ -137,7 +141,7 @@ exports.handler = async (event) => {
     };
   }
 
-  private writeTempFile(dir: string, filename: string, data: any) {
+  private writeTempFile(dir: string, filename: string, data: Item[] | ItemKey[]): void {
     const buffer = Buffer.from(JSON.stringify(data));
     const filepath = dir + '/' + filename;
     fs.writeFileSync(filepath, buffer);
