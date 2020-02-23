@@ -11,7 +11,7 @@ A simple CDK JSON seeder for DynamoDB
 
 Glad you asked!
 
-Using [AWS CDK] for automating infratructure deployments is an amazing way of integrating the development and operations into one process and one codebase.
+Using [AWS CDK] for automating infrastructure deployments is an amazing way of integrating the development and operations into one process and one codebase.
 
 However, building dev or test environments that come pre-populated with data can be tricky, especially when using [Amazon DynamoDB].
 
@@ -59,7 +59,7 @@ Behind the scenes we use an [AwsCustomResource] as a representation of the relat
 
 On deployment, we write copies of your seed data locally and use a [BucketDeployment] to write it to an S3 [Bucket].
 
-We then create the handler function and custom resource to field seed requests (the `onCreate` event will immediate fire as the stack deploys, reading the data from thhe bucket and seeding the table using [AWS.DynamoDB.DocumentClient]).
+We then create the handler function and custom resource to field seed requests (the `onCreate` event will immediate fire as the stack deploys, reading the data from the bucket and seeding the table using [AWS.DynamoDB.DocumentClient]).
 
 ### Updating a stack
 
