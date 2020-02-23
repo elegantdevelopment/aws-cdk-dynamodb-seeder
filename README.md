@@ -53,7 +53,7 @@ Data passed into `setup` ("Items" to put) or `teardown` ("Keys" to delete) shoul
 
 ## Internals
 
-Behind the scenes we an [AwsCustomResource] as a representation of the related table's seed state. The custom resource's event handlers invoke a [Function] to perform setup and/or teardown actions.
+Behind the scenes we use an [AwsCustomResource] as a representation of the related table's seed state. The custom resource's event handlers invoke a [Function] to perform setup and/or teardown actions.
 
 ### Deploying a stack
 
@@ -70,6 +70,8 @@ This will run [AWS.DynamoDB.DocumentClient.delete()] on every teardown "Key" fol
 ### Destroying a stack
 
 When the stack is destroyed, the event handler's `onDelete` function will be invoked, providing `Seeder.props.teardown` is set.
+
+This simply runs [AWS.DynamoDB.DocumentClient.delete()] on every teardown "Key" before destroying the `Seeder`'s resources.
 
 [aws cdk]: https://aws.amazon.com/cdk
 [amazon dynamodb]: https://aws.amazon.com/dynamodb
