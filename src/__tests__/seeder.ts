@@ -14,7 +14,7 @@ test('creates a custom resource to seed a table', () => {
     tableName: 'TestTable',
     setup: require('./put.json'),
     teardown: require('./delete.json'),
-    refreshOnUpdate: true
+    refreshOnUpdate: true,
   });
 
   expect(stack).toHaveResource('AWS::Lambda::Function');
@@ -34,5 +34,5 @@ test('fails if no setup prop provided', () => {
         tableName: 'TestTable',
         setup: undefined,
       }),
-  ).toThrowError("setup value must be an array of JSON objects");
+  ).toThrowError('setup value must be an array of JSON objects');
 });
