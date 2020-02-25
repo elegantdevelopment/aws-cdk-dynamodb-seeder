@@ -21,6 +21,7 @@
   "types": "lib/index.d.ts",
   "jsii": {
     "outdir": "dist",
+    "versionFormat": "short",
     "excludeTypescript": [
       "tests"
     ],
@@ -101,7 +102,7 @@
     "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/*.ts",
+      "lib/*.ts",
       "!node_modules/**"
     ],
     "moduleFileExtensions": [
