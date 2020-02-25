@@ -2,7 +2,7 @@ import { Stack } from '@aws-cdk/core';
 import { Table, AttributeType } from '@aws-cdk/aws-dynamodb';
 import '@aws-cdk/assert/jest';
 
-import { Seeder } from '../index';
+import { Seeder } from '../lib/index';
 
 test('creates a custom resource to seed a table', () => {
   const stack = new Stack();

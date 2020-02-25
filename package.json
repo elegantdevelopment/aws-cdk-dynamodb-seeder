@@ -21,6 +21,7 @@
   "types": "lib/index.d.ts",
   "jsii": {
     "outdir": "dist",
+    "excludeTypescript": "/tests/**",
     "targets": {
       "python": {
         "distName": "aws-cdk-dynamodb-seeder",
@@ -37,9 +38,6 @@
         "namespace": "ElegantDevelopment.AWSCDKDynamoDBSeeder",
         "packageId": "ElegantDevelopment.AWSCDKDynamoDBSeeder"
       }
-    },
-    "tsc": {
-      "outDir": "./lib"
     }
   },
   "awscdkio": {
@@ -98,7 +96,7 @@
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/*.ts",
