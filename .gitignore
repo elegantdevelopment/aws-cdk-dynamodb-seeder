@@ -1,8 +1,18 @@
+# project
+lib/
+
 # npm
 node_modules/
 .npm
 *.tgz
-lib/
 
 # code coverage
 coverage/
+
+# jsii
+tsconfig.json
+.jsii
+dist/
+*.js
+*.d.ts
+.cdk.staging
