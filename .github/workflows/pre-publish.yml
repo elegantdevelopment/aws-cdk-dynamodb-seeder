@@ -2,6 +2,8 @@ name: jsii pre-publish checks
 
 on:
   push:
+    branches:
+      - "*"
     tags-ignore:
       - "v*"
 
