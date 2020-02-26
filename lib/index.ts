@@ -20,7 +20,7 @@ export interface ItemKey {
 }
 
 export interface Item {
-  [key: string]: object;
+  [key: string]: any;
 }
 
 export class Seeder extends Construct {
