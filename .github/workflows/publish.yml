@@ -36,4 +36,4 @@ jobs:
 
     - run: make publish-nuget
       env:
-        NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+        NUGET_TOKEN: ${{ secrets.NUGET_API_KEY }}
