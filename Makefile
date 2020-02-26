@@ -9,7 +9,7 @@ pack: build
 		--workdir ${DOCKER_WORKDIR} \
 		--volume ${PWD}:${DOCKER_WORKDIR} \
 		${DOCKER_IMAGE}:${DOCKER_TAG} \
-		npm run package
+		rm -rf dist && npm run package
 
 build:
 	docker run \

@@ -33,6 +33,13 @@
       "dotnet": {
         "namespace": "ElegantDevelopment.AWSCDKDynamoDBSeeder",
         "packageId": "ElegantDevelopment.AWSCDKDynamoDBSeeder"
+      },
+      "java": {
+        "package": "uk.co.elegantdevelopment.aws-cdk-dynamodb-seeder",
+        "maven": {
+          "groupId": "uk.co.elegantdevelopment",
+          "artifactId": "aws-cdk-dynamodb-seeder"
+        }
       }
     }
   },
