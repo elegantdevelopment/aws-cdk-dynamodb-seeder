@@ -1,6 +1,9 @@
 name: jsii pre-publish checks
 
-on: [push]
+on:
+  push:
+    tags-ignore:
+      - "v*"
 
 jobs:
   build:
