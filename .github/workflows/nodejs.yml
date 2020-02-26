@@ -24,5 +24,16 @@ jobs:
       uses: codecov/codecov-action@v1.0.5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
+    - name: JSII Publish
+      uses: udondan/jsii-publish@v0.8.3
+      with:
+        VERSION: ${{ steps.get_version.outputs.VERSION }}
+        BUILD_SOURCE: true
+        BUILD_PACKAGES: true
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+        GITHUB_TOKEN: ${{ GITHUB_TOKEN }}
+        GITHUB_REPOSITORY: ${{ github.repository }}
       env:
         CI: true
