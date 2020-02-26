@@ -3,7 +3,10 @@
   "version": "1.2.1",
   "description": "A simple CDK JSON seeder for DynamoDB",
   "scripts": {
-    "build": "tsc",
+    "build": "jsii",
+    "build:watch": "jsii -w",
+    "package": "jsii-pacmak",
+    "cdk": "cdk",
     "check": "npm test && npm run lint",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
@@ -16,6 +19,34 @@
   },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "jsii": {
+    "outdir": "dist",
+    "versionFormat": "short",
+    "excludeTypescript": [
+      "tests"
+    ],
+    "targets": {
+      "python": {
+        "distName": "aws-cdk-dynamodb-seeder",
+        "module": "ElegantDevelopment.AWSCDKDynamoDBSeeder"
+      },
+      "java": {
+        "package": "com.github.elegantdevelopment.awscdkdynamodbseeder",
+        "maven": {
+          "groupId": "com.github.elegantdevelopment",
+          "artifactId": "aws-cdk-dynamodb-seeder"
+        }
+      },
+      "dotnet": {
+        "namespace": "ElegantDevelopment.AWSCDKDynamoDBSeeder",
+        "packageId": "ElegantDevelopment.AWSCDKDynamoDBSeeder"
+      }
+    }
+  },
+  "awscdkio": {
+    "twitter": "@elegantdev"
+  },
+  "stability": "experimental",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/elegantdevelopment/aws-cdk-dynamodb-seeder.git"
@@ -27,7 +58,11 @@
     "seed",
     "seeder"
   ],
-  "author": "Justin Taylor <jtaylor@elegantdevelopment.co.uk> (https://www.linkedin.com/in/jsdtaylor)",
+  "author": {
+    "name": "Justin Taylor",
+    "email": "jtaylor@elegantdevelopment.co.uk",
+    "url": "https://github.com/jsdtaylor"
+  },
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/elegantdevelopment/aws-cdk-dynamodb-seeder/issues"
@@ -50,9 +85,12 @@
     "@types/tmp": "^0.1.0",
     "@typescript-eslint/eslint-plugin": "^2.20.0",
     "@typescript-eslint/parser": "^2.20.0",
+    "aws-cdk": "^1.25.0",
     "eslint": "^6.8.0",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
+    "jsii": "^0.22.0",
+    "jsii-pacmak": "^0.22.0",
     "prettier": "^1.19.1",
     "ts-jest": "^25.2.1",
     "typescript": "^3.7.5"
@@ -61,10 +99,10 @@
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/*.ts",
+      "lib/*.ts",
       "!node_modules/**"
     ],
     "moduleFileExtensions": [
@@ -92,5 +130,17 @@
       "pre-commit": "npm run check",
       "pre-push": "npm run check"
     }
-  }
+  },
+  "peerDependencies": {
+    "@aws-cdk/aws-dynamodb": "^1.25.0",
+    "@aws-cdk/aws-lambda": "^1.25.0",
+    "@aws-cdk/aws-s3": "^1.25.0",
+    "@aws-cdk/aws-s3-deployment": "^1.25.0",
+    "@aws-cdk/core": "^1.25.0",
+    "@aws-cdk/custom-resources": "^1.25.0"
+  },
+  "bundledDependencies": [
+    "aws-sdk",
+    "tmp"
+  ]
 }

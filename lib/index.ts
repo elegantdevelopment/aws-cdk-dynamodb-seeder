@@ -8,18 +8,18 @@ import * as tmp from 'tmp';
 import * as fs from 'fs';
 
 export interface Props {
-  table: Table;
-  tableName: string;
-  setup: Item[];
-  teardown?: ItemKey[];
-  refreshOnUpdate?: boolean;
+  readonly table: Table;
+  readonly tableName: string;
+  readonly setup: Item[];
+  readonly teardown?: ItemKey[];
+  readonly refreshOnUpdate?: boolean;
 }
 
-interface ItemKey {
+export interface ItemKey {
   [key: string]: string | number;
 }
 
-interface Item {
+export interface Item {
   [key: string]: object;
 }
 
