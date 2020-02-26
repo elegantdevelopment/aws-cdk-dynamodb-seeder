@@ -1,6 +1,6 @@
 # aws-cdk-dynamodb-seeder [![Mentioned in Awesome CDK](https://awesome.re/mentioned-badge.svg)](https://github.com/eladb/awesome-cdk)
 
-![Node.js CI](https://github.com/elegantdevelopment/aws-cdk-dynamodb-seeder/workflows/Node.js%20CI/badge.svg)
+![build](https://github.com/elegantdevelopment/aws-cdk-dynamodb-seeder/workflows/build/badge.svg)
 [![codecov](https://codecov.io/gh/elegantdevelopment/aws-cdk-dynamodb-seeder/branch/master/graph/badge.svg)](https://codecov.io/gh/elegantdevelopment/aws-cdk-dynamodb-seeder)
 [![npm version](https://badge.fury.io/js/aws-cdk-dynamodb-seeder.svg)](https://badge.fury.io/js/aws-cdk-dynamodb-seeder)
 [![dependencies Status](https://david-dm.org/elegantdevelopment/aws-cdk-dynamodb-seeder/status.svg)](https://david-dm.org/elegantdevelopment/aws-cdk-dynamodb-seeder)
