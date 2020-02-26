@@ -1,4 +1,4 @@
-SHELL := /bin/bash
+SHELL := /bin/bash -o pipefail
 
 DOCKER_IMAGE := jsii/superchain
 DOCKER_TAG := latest
