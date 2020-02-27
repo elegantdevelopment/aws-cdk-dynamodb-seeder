@@ -56,6 +56,10 @@ Data passed into `setup` ("Items" to put) or `teardown` ("Keys" to delete) shoul
 * `setup` elements should use the format of `params.Item` from [AWS.DynamoDB.DocumentClient.put()]
 * `teardown` elements should use the format of `params.Key` from [AWS.DynamoDB.DocumentClient.delete()]
 
+## Versioning
+
+We will *attempt* to align the version of this package with [AWS CDK], but always check our release descriptions for compatibility.
+
 ## Internals
 
 Behind the scenes we use an [AwsCustomResource] as a representation of the related table's seed state. The custom resource's event handlers invoke a [Function] to perform setup and/or teardown actions.
