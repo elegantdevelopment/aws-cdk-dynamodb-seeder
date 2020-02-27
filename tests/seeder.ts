@@ -4,7 +4,7 @@ import '@aws-cdk/assert/jest';
 
 import { Seeder } from '../lib/index';
 
-test('creates a custom resource to seed a table', () => {
+it('seeds a table from required json files', () => {
   const stack = new Stack();
   new Seeder(stack, 'Seeder', {
     table: new Table(stack, 'TestTable', {
@@ -14,6 +14,39 @@ test('creates a custom resource to seed a table', () => {
     tableName: 'TestTable',
     setup: require('./put.json'),
     teardown: require('./delete.json'),
+    refreshOnUpdate: true,
+  });
+
+  expect(stack).toHaveResource('AWS::Lambda::Function');
+  expect(stack).toHaveResource('AWS::S3::Bucket');
+});
+
+it('seeds a table from inline arrays', () => {
+  const stack = new Stack();
+  new Seeder(stack, 'Seeder', {
+    table: new Table(stack, 'TestTable', {
+      tableName: 'TestTable',
+      partitionKey: { name: 'Id', type: AttributeType.STRING },
+    }),
+    tableName: 'TestTable',
+    setup: [
+      {
+        id: 'herewego...',
+        this: 'is a test',
+        testing: {
+          testing: 123,
+        },
+      },
+      {
+        id: 'greatest show',
+        this: 'is a the greatest show',
+      },
+    ],
+    teardown: [
+      {
+        id: 'greatest show',
+      },
+    ],
     refreshOnUpdate: true,
   });
 

@@ -1,6 +1,6 @@
 {
   "name": "aws-cdk-dynamodb-seeder",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "A simple CDK JSON seeder for DynamoDB",
   "scripts": {
     "build": "jsii",
@@ -33,6 +33,13 @@
       "dotnet": {
         "namespace": "ElegantDevelopment.AWSCDKDynamoDBSeeder",
         "packageId": "ElegantDevelopment.AWSCDKDynamoDBSeeder"
+      },
+      "java": {
+        "package": "io.github.elegantdevelopment.AWSCDKDynamoDBSeeder",
+        "maven": {
+          "groupId": "io.github.elegantdevelopment",
+          "artifactId": "AWSCDKDynamoDBSeeder"
+        }
       }
     }
   },
@@ -82,8 +89,8 @@
     "eslint": "^6.8.0",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
-    "jsii": "^1.0.0",
-    "jsii-pacmak": "^1.0.0",
+    "jsii": "^0.22.0",
+    "jsii-pacmak": "^0.22.0",
     "jsii-release": "^0.1.2",
     "prettier": "^1.19.1",
     "ts-jest": "^25.2.1",
