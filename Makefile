@@ -9,7 +9,7 @@ build:
 		--workdir ${DOCKER_WORKDIR} \
 		--volume ${PWD}:${DOCKER_WORKDIR} \
 		${DOCKER_IMAGE}:${DOCKER_TAG} \
-		rm -rf dist && npm i && npm run package
+		/bin/bash -c "rm -rf dist && npm i && npm run package"
 
 publish-npm:
 	docker run \
@@ -17,7 +17,7 @@ publish-npm:
 		--volume ${PWD}:${DOCKER_WORKDIR} \
 		--env NPM_TOKEN \
 		${DOCKER_IMAGE}:${DOCKER_TAG} \
-		npx jsii-release-npm dist/js
+		/bin/bash -c "npx jsii-release-npm dist/js"
 
 publish-nuget:
 	docker run \
@@ -25,7 +25,7 @@ publish-nuget:
 		--volume ${PWD}:${DOCKER_WORKDIR} \
 		--env NUGET_API_KEY \
 		${DOCKER_IMAGE}:${DOCKER_TAG} \
-		npx jsii-release-nuget dist/dotnet
+		/bin/bash -c "npx jsii-release-nuget dist/dotnet"
 		
 publish-pypi:
 	docker run \
@@ -34,7 +34,7 @@ publish-pypi:
 		--env TWINE_USERNAME=__token__ \
 		--env TWINE_PASSWORD=$(PYPI_TOKEN) \
 		${DOCKER_IMAGE}:${DOCKER_TAG} \
-		npx jsii-release-pypi dist/python
+		/bin/bash -c "npx jsii-release-pypi dist/python"
 		
 publish-maven:
 	docker run \
@@ -47,4 +47,4 @@ publish-maven:
 		--env MAVEN_GPG_PRIVATE_KEY_PASSPHRASE \
 		--env MAVEN_DRYRUN \
 		${DOCKER_IMAGE}:${DOCKER_TAG} \
-		npx jsii-release-maven dist/java
+		/bin/bash -c "npx jsii-release-maven dist/java"
