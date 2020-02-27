@@ -35,9 +35,9 @@
         "packageId": "ElegantDevelopment.AWSCDKDynamoDBSeeder"
       },
       "java": {
-        "package": "uk.co.elegantdevelopment.AWSCDKDynamoDBSeeder",
+        "package": "io.github.elegantdevelopment.AWSCDKDynamoDBSeeder",
         "maven": {
-          "groupId": "uk.co.elegantdevelopment",
+          "groupId": "io.github.elegantdevelopment",
           "artifactId": "AWSCDKDynamoDBSeeder"
         }
       }
