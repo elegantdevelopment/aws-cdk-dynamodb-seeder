@@ -24,5 +24,6 @@ jobs:
       uses: codecov/codecov-action@v1.0.5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
+        node-version: 12.x
       env:
         CI: true

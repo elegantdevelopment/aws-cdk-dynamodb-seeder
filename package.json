@@ -35,10 +35,10 @@
         "packageId": "ElegantDevelopment.AWSCDKDynamoDBSeeder"
       },
       "java": {
-        "package": "uk.co.elegantdevelopment.aws-cdk-dynamodb-seeder",
+        "package": "uk.co.elegantdevelopment.AWSCDKDynamoDBSeeder",
         "maven": {
           "groupId": "uk.co.elegantdevelopment",
-          "artifactId": "aws-cdk-dynamodb-seeder"
+          "artifactId": "AWSCDKDynamoDBSeeder"
         }
       }
     }
@@ -89,8 +89,8 @@
     "eslint": "^6.8.0",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
-    "jsii": "^1.0.0",
-    "jsii-pacmak": "^1.0.0",
+    "jsii": "^0.22.0",
+    "jsii-pacmak": "^0.22.0",
     "jsii-release": "^0.1.2",
     "prettier": "^1.19.1",
     "ts-jest": "^25.2.1",
