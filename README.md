@@ -8,7 +8,7 @@
 [![npm version](https://badge.fury.io/js/aws-cdk-dynamodb-seeder.svg)](https://badge.fury.io/js/aws-cdk-dynamodb-seeder)
 [![NuGet version](https://badge.fury.io/nu/ElegantDevelopment.AWSCDKDynamoDBSeeder.svg)](https://badge.fury.io/nu/ElegantDevelopment.AWSCDKDynamoDBSeeder)
 [![PyPI version](https://badge.fury.io/py/aws-cdk-dynamodb-seeder.svg)](https://badge.fury.io/py/aws-cdk-dynamodb-seeder)
-![Maven Central](https://img.shields.io/maven-central/v/io.github.elegantdevelopment/AWSCDKDynamoDBSeeder?color=brightgreen)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.elegantdevelopment/AWSCDKDynamoDBSeeder?color=brightgreen)](https://repo1.maven.org/maven2/io/github/elegantdevelopment/AWSCDKDynamoDBSeeder/)
 
 A simple CDK JSON seeder for DynamoDB
 
