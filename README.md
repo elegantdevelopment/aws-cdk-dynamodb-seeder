@@ -40,7 +40,6 @@ const myTable = new Table(stack, "MyTable", {
 ...
 new Seeder(stack, "MySeeder", {
     table: myTable,
-    tableName: "MyTable",
     setup: require("./items-to-put.json"),
     teardown: require("./keys-to-delete.json"),
     refreshOnUpdate: true  // runs setup and teardown on every update, default false
@@ -58,7 +57,7 @@ Data passed into `setup` ("Items" to put) or `teardown` ("Keys" to delete) shoul
 
 ## Versioning
 
-We will *attempt* to align the version of this package with [AWS CDK], but always check our release descriptions for compatibility.
+We will *attempt* to align the major and minor version of this package with [AWS CDK], but always check our release descriptions for compatibility.
 
 ## Internals
 

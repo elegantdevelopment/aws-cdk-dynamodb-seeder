@@ -11,7 +11,6 @@ it('seeds a table from required json files', () => {
       tableName: 'TestTable',
       partitionKey: { name: 'Id', type: AttributeType.STRING },
     }),
-    tableName: 'TestTable',
     setup: require('./put.json'),
     teardown: require('./delete.json'),
     refreshOnUpdate: true,
@@ -28,7 +27,6 @@ it('seeds a table from inline arrays', () => {
       tableName: 'TestTable',
       partitionKey: { name: 'Id', type: AttributeType.STRING },
     }),
-    tableName: 'TestTable',
     setup: [
       {
         id: 'herewego...',
