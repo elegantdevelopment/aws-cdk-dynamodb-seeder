@@ -42,3 +42,16 @@ publish-pypi:
 		--env TWINE_PASSWORD=$(PYPI_TOKEN) \
 		${DOCKER_IMAGE}:${DOCKER_TAG} \
 		npx jsii-release-pypi dist/python
+		
+publish-maven:
+	docker run \
+		--workdir ${DOCKER_WORKDIR} \
+		--volume ${PWD}:${DOCKER_WORKDIR} \
+		--env MAVEN_STAGING_PROFILE_ID \
+		--env MAVEN_USERNAME \
+		--env MAVEN_PASSWORD \
+		--env MAVEN_GPG_PRIVATE_KEY \
+		--env MAVEN_GPG_PRIVATE_KEY_PASSPHRASE \
+		--env MAVEN_DRYRUN \
+		${DOCKER_IMAGE}:${DOCKER_TAG} \
+		npx jsii-release-maven dist/java
