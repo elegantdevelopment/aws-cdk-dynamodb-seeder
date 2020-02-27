@@ -87,7 +87,6 @@
     "@typescript-eslint/parser": "^2.20.0",
     "aws-cdk": "^1.26.0",
     "eslint": "^6.8.0",
-    "husky": "^4.2.3",
     "jest": "^25.1.0",
     "jsii": "^0.22.0",
     "jsii-pacmak": "^0.22.0",
@@ -121,12 +120,6 @@
         }
       },
       "testEnvironment": "node"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run check",
-      "pre-push": "npm run check"
     }
   },
   "peerDependencies": {
