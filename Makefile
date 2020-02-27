@@ -4,19 +4,12 @@ DOCKER_IMAGE := jsii/superchain
 DOCKER_TAG := latest
 DOCKER_WORKDIR := /workdir
 
-pack: build
-	docker run \
-		--workdir ${DOCKER_WORKDIR} \
-		--volume ${PWD}:${DOCKER_WORKDIR} \
-		${DOCKER_IMAGE}:${DOCKER_TAG} \
-		rm -rf dist && npm run package
-
 build:
 	docker run \
 		--workdir ${DOCKER_WORKDIR} \
 		--volume ${PWD}:${DOCKER_WORKDIR} \
 		${DOCKER_IMAGE}:${DOCKER_TAG} \
-		npm i
+		rm -rf dist && npm i && npm run package
 
 publish-npm:
 	docker run \
