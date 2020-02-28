@@ -9,7 +9,6 @@ import * as fs from 'fs';
 
 export interface Props {
   readonly table: Table;
-  readonly tableName: string;
   readonly setup: Item[];
   readonly teardown?: ItemKey[];
   readonly refreshOnUpdate?: boolean;
@@ -79,7 +78,7 @@ const run = async (filename, action) => {
   console.log('sending data to dynamodb');
   for(let i = 0; i < seed.length;i++) {
     await documentClient[action]({
-      TableName: '${props.tableName}',
+      TableName: '${props.table.tableName}',
       [writeTypeFromAction(action)]: seed[i]
     }).promise();
   };
