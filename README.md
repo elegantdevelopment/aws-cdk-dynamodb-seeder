@@ -28,7 +28,7 @@ Install using your favourite package manager:
 yarn add aws-cdk-dynamodb-seeder
 ```
 
-### Example usage
+### Example TypeScript usage
 
 ```ts
 import { Seeder } from 'aws-cdk-dynamodb-seeder';
@@ -50,7 +50,7 @@ For a more in-depth example, see: [elegantdevelopment/aws-cdk-dynamodb-seeder-ex
 
 ### Importing seed data
 
-Data passed into `setup` ("Items" to put) or `teardown` ("Keys" to delete) should be an `array` of JavaScript objects (that are, in turn, representations of `string` to [AttributeValue] maps).
+Data passed into `setup` ("Items" to put) or `teardown` ("Keys" to delete) should be an `array` of objects (that are, in turn, representations of `string` to [AttributeValue] maps).
 
 * `setup` elements should use the format of `params.Item` from [AWS.DynamoDB.DocumentClient.put()]
 * `teardown` elements should use the format of `params.Key` from [AWS.DynamoDB.DocumentClient.delete()]
@@ -73,13 +73,13 @@ We then create the handler function and custom resource to field seed requests (
 
 ### Updating a stack
 
-On a stack update, the `onUpdate` handler is triggered when `Seeder.props.refreshOnUpdate` is `true`.
+On a stack update, the `onUpdate` handler is triggered when `refreshOnUpdate` is `true`.
 
 This will run [AWS.DynamoDB.DocumentClient.delete()] on every teardown "Key" followed by [AWS.DynamoDB.DocumentClient.put()] on every setup "Item".
 
 ### Destroying a stack
 
-When the stack is destroyed, the event handler's `onDelete` function will be invoked, providing `Seeder.props.teardown` is set.
+When the stack is destroyed, the event handler's `onDelete` function will be invoked, providing `teardown` is set.
 
 This simply runs [AWS.DynamoDB.DocumentClient.delete()] on every teardown "Key" before destroying the `Seeder`'s resources.
 
