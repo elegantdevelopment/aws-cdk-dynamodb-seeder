@@ -59,6 +59,8 @@ Data passed into `setup` ("Items" to put) or `teardown` ("Keys" to delete) shoul
 
 We will *attempt* to align the major and minor version of this package with [AWS CDK], but always check our release descriptions for compatibility.
 
+We currently support [![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/elegantdevelopment/aws-cdk-dynamodb-seeder-examples/@aws-cdk/core)](https://github.com/aws/aws-cdk)
+
 ## Internals
 
 Behind the scenes we use an [AwsCustomResource] as a representation of the related table's seed state. The custom resource's event handlers invoke a [Function] to perform setup and/or teardown actions.
