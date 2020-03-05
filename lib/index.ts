@@ -136,7 +136,9 @@ exports.handler = async (event) => {
       service: 'Lambda',
       action: 'invokeAsync',
       apiVersion: '2015-03-31',
-      physicalResourceId: `${this.props.table.tableArn}-seeder`,
+      physicalResourceId: {
+        id: `${this.props.table.tableArn}-seeder`,
+      },
     };
   }
 
