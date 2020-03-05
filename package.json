@@ -1,6 +1,6 @@
 {
   "name": "aws-cdk-dynamodb-seeder",
-  "version": "1.26.1",
+  "version": "1.27.0",
   "description": "A simple CDK JSON seeder for DynamoDB",
   "scripts": {
     "build": "jsii",
@@ -69,23 +69,23 @@
   },
   "homepage": "https://github.com/elegantdevelopment/aws-cdk-dynamodb-seeder#readme",
   "dependencies": {
-    "@aws-cdk/aws-dynamodb": "1.26.0",
-    "@aws-cdk/aws-lambda": "1.26.0",
-    "@aws-cdk/aws-s3": "1.26.0",
-    "@aws-cdk/aws-s3-deployment": "1.26.0",
-    "@aws-cdk/core": "1.26.0",
-    "@aws-cdk/custom-resources": "1.26.0",
-    "aws-sdk": "^2.621.0",
+    "@aws-cdk/aws-dynamodb": "^1.27.0",
+    "@aws-cdk/aws-lambda": "^1.27.0",
+    "@aws-cdk/aws-s3": "^1.27.0",
+    "@aws-cdk/aws-s3-deployment": "^1.27.0",
+    "@aws-cdk/core": "^1.27.0",
+    "@aws-cdk/custom-resources": "^1.27.0",
+    "aws-sdk": "^2.633.0",
     "tmp": "^0.1.0"
   },
   "devDependencies": {
-    "@aws-cdk/assert": "^1.26.0",
+    "@aws-cdk/assert": "^1.27.0",
     "@types/jest": "^25.1.2",
     "@types/node": "^13.7.6",
     "@types/tmp": "^0.1.0",
     "@typescript-eslint/eslint-plugin": "^2.20.0",
     "@typescript-eslint/parser": "^2.20.0",
-    "aws-cdk": "^1.26.0",
+    "aws-cdk": "^1.27.0",
     "eslint": "^6.8.0",
     "jest": "^25.1.0",
     "jsii": "^0.22.0",
@@ -123,12 +123,12 @@
     }
   },
   "peerDependencies": {
-    "@aws-cdk/aws-dynamodb": "1.26.0",
-    "@aws-cdk/aws-lambda": "1.26.0",
-    "@aws-cdk/aws-s3": "1.26.0",
-    "@aws-cdk/aws-s3-deployment": "1.26.0",
-    "@aws-cdk/core": "1.26.0",
-    "@aws-cdk/custom-resources": "1.26.0"
+    "@aws-cdk/aws-dynamodb": "^1.27.0",
+    "@aws-cdk/aws-lambda": "^1.27.0",
+    "@aws-cdk/aws-s3": "^1.27.0",
+    "@aws-cdk/aws-s3-deployment": "^1.27.0",
+    "@aws-cdk/core": "^1.27.0",
+    "@aws-cdk/custom-resources": "^1.27.0"
   },
   "bundledDependencies": [
     "aws-sdk",
