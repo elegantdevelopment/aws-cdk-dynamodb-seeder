@@ -3,7 +3,7 @@ import { Table } from '@aws-cdk/aws-dynamodb';
 import { Function, Runtime, Code } from '@aws-cdk/aws-lambda';
 import { Bucket } from '@aws-cdk/aws-s3';
 import { BucketDeployment, Source } from '@aws-cdk/aws-s3-deployment';
-import { AwsCustomResource, AwsSdkCall } from '@aws-cdk/custom-resources';
+import { AwsCustomResource, AwsSdkCall, AwsCustomResourcePolicy } from '@aws-cdk/custom-resources';
 import * as tmp from 'tmp';
 import * as fs from 'fs';
 
@@ -127,6 +127,7 @@ exports.handler = async (event) => {
             },
           }
         : undefined,
+      policy: AwsCustomResourcePolicy.fromSdkCalls({ resources: AwsCustomResourcePolicy.ANY_RESOURCE }),
     });
     fn.grantInvoke(onEvent);
   }
