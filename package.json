@@ -88,9 +88,9 @@
     "aws-cdk": "^1.36.0",
     "eslint": "^6.8.0",
     "jest": "^25.4.0",
-    "jsii": "^0.22.0",
-    "jsii-pacmak": "^0.22.0",
-    "jsii-release": "^0.1.2",
+    "jsii": "^1.4.1",
+    "jsii-pacmak": "^1.4.1",
+    "jsii-release": "^0.1.5",
     "minimist": ">=1.2.2",
     "prettier": "^1.19.1",
     "ts-jest": "^25.4.0",
@@ -124,12 +124,12 @@
     }
   },
   "peerDependencies": {
-    "@aws-cdk/aws-dynamodb": "^1.30.0",
-    "@aws-cdk/aws-lambda": "^1.30.0",
-    "@aws-cdk/aws-s3": "^1.30.0",
-    "@aws-cdk/aws-s3-deployment": "^1.30.0",
-    "@aws-cdk/core": "^1.30.0",
-    "@aws-cdk/custom-resources": "^1.30.0"
+    "@aws-cdk/aws-dynamodb": "^1.36.0",
+    "@aws-cdk/aws-lambda": "^1.36.0",
+    "@aws-cdk/aws-s3": "^1.36.0",
+    "@aws-cdk/aws-s3-deployment": "^1.36.0",
+    "@aws-cdk/core": "^1.36.0",
+    "@aws-cdk/custom-resources": "^1.36.0"
   },
   "bundledDependencies": [
     "aws-sdk",
