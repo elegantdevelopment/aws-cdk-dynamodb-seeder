@@ -89,7 +89,7 @@ const run = async (filename, action) => {
 }
 
 exports.handler = async (event) => {
-  if (event.mode === "delete" || event.mode === "update")
+  if (event.mode === "delete")
     await run("teardown.json", "delete");
   if (event.mode === "create" || event.mode === "update")
     await run("setup.json", "put");
