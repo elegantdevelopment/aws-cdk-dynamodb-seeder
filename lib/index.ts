@@ -57,9 +57,9 @@ const AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 
 const writeTypeFromAction = (action) => {
-  if (action === "put")
+  if (action === "Put")
     return "Item";
-  if (action === "delete")
+  if (action === "Delete")
     return "Key";
 }
 
@@ -79,17 +79,28 @@ const run = async (filename, action) => {
     convertEmptyValues: true
   });
   console.log('sending data to dynamodb');
-  for(let i = 0; i < seed.length;i++) {
-    await documentClient[action]({
-      TableName: '${props.table.tableName}',
-      [writeTypeFromAction(action)]: seed[i]
+  do {
+    const requests = [];
+    const batch = seed.splice(0, 25);
+    for (let i = 0; i < batch.length; i++) {
+      requests.push({
+        [action + "Request"]: {
+          [writeTypeFromAction(action)]: batch[i]
+        }
+      });
+    }
+    await documentClient.batchWrite({
+      RequestItems: {
+        '${props.table.tableName}': [...requests]
+      }
     }).promise();
-  };
+  }
+  while (seed.length > 0);
   console.log('finished sending data to dynamodb');
 }
 
 exports.handler = async (event) => {
-  if (event.mode === "delete" || event.mode === "update")
+  if (event.mode === "delete")
     await run("teardown.json", "delete");
   if (event.mode === "create" || event.mode === "update")
     await run("setup.json", "put");
