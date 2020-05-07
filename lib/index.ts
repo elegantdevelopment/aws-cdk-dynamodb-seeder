@@ -74,7 +74,9 @@ const run = async (filename, action) => {
   const seed = JSON.parse(data.Body.toString());
   console.log('finished transforming seed data');
   
-  const documentClient = new AWS.DynamoDB.DocumentClient();
+  const documentClient = new AWS.DynamoDB.DocumentClient({
+    convertEmptyValues: true
+  });
   console.log('sending data to dynamodb');
   for(let i = 0; i < seed.length;i++) {
     await documentClient[action]({
