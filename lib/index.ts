@@ -1,4 +1,4 @@
-import { Construct, RemovalPolicy } from '@aws-cdk/core';
+import { Construct, RemovalPolicy, Duration } from '@aws-cdk/core';
 import { Table } from '@aws-cdk/aws-dynamodb';
 import { Function, Runtime, Code } from '@aws-cdk/aws-lambda';
 import { Bucket } from '@aws-cdk/aws-s3';
@@ -49,6 +49,7 @@ export class Seeder extends Construct {
     const fn = new Function(this, 'handler', {
       runtime: Runtime.NODEJS_12_X,
       handler: 'index.handler',
+      timeout: Duration.seconds(60),
       code: Code.fromInline(`
 console.log('function loaded');
 
