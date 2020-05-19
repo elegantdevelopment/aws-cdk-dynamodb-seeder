@@ -101,9 +101,9 @@ const run = async (filename, action) => {
 
 exports.handler = async (event) => {
   if (event.mode === "delete")
-    await run("teardown.json", "delete");
+    await run("teardown.json", "Delete");
   if (event.mode === "create" || event.mode === "update")
-    await run("setup.json", "put");
+    await run("setup.json", "Put");
 }`),
     });
     destinationBucket.grantRead(fn);
