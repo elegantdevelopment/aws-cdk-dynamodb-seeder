@@ -1,6 +1,6 @@
 {
   "name": "aws-cdk-dynamodb-seeder",
-  "version": "1.37.1",
+  "version": "1.44.0",
   "description": "A simple CDK JSON seeder for DynamoDB",
   "scripts": {
     "build": "jsii",
@@ -69,32 +69,33 @@
   },
   "homepage": "https://github.com/elegantdevelopment/aws-cdk-dynamodb-seeder#readme",
   "dependencies": {
-    "@aws-cdk/aws-dynamodb": "^1.37.0",
-    "@aws-cdk/aws-lambda": "^1.37.0",
-    "@aws-cdk/aws-s3": "^1.37.0",
-    "@aws-cdk/aws-s3-deployment": "^1.37.0",
-    "@aws-cdk/core": "^1.37.0",
-    "@aws-cdk/custom-resources": "^1.37.0",
-    "aws-sdk": "^2.671.0",
+    "@aws-cdk/aws-dynamodb": "^1.44.0",
+    "@aws-cdk/aws-lambda": "^1.44.0",
+    "@aws-cdk/aws-s3": "^1.44.0",
+    "@aws-cdk/aws-s3-deployment": "^1.44.0",
+    "@aws-cdk/core": "^1.44.0",
+    "@aws-cdk/custom-resources": "^1.44.0",
+    "aws-sdk": "^2.691.0",
+    "constructs": "^3.0.3",
     "tmp": "^0.1.0"
   },
   "devDependencies": {
-    "@aws-cdk/assert": "^1.37.0",
-    "@types/jest": "^25.2.1",
-    "@types/node": "^13.13.5",
+    "@aws-cdk/assert": "^1.44.0",
+    "@types/jest": "^25.2.3",
+    "@types/node": "^13.13.10",
     "@types/tmp": "^0.1.0",
-    "@typescript-eslint/eslint-plugin": "^2.31.0",
-    "@typescript-eslint/parser": "^2.31.0",
-    "aws-cdk": "^1.37.0",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
+    "aws-cdk": "^1.44.0",
     "eslint": "^6.8.0",
     "jest": "^25.5.4",
-    "jsii": "^1.5.0",
-    "jsii-pacmak": "^1.5.0",
+    "jsii": "^1.6.0",
+    "jsii-pacmak": "^1.6.0",
     "jsii-release": "^0.1.5",
     "minimist": ">=1.2.2",
     "prettier": "^1.19.1",
-    "ts-jest": "^25.5.0",
-    "typescript": "^3.8.2"
+    "ts-jest": "^25.5.1",
+    "typescript": "^3.9.5"
   },
   "jest": {
     "transform": {
@@ -124,12 +125,13 @@
     }
   },
   "peerDependencies": {
-    "@aws-cdk/aws-dynamodb": "^1.36.0",
-    "@aws-cdk/aws-lambda": "^1.36.0",
-    "@aws-cdk/aws-s3": "^1.36.0",
-    "@aws-cdk/aws-s3-deployment": "^1.36.0",
-    "@aws-cdk/core": "^1.36.0",
-    "@aws-cdk/custom-resources": "^1.36.0"
+    "@aws-cdk/aws-dynamodb": "^1.44.0",
+    "@aws-cdk/aws-lambda": "^1.44.0",
+    "@aws-cdk/aws-s3": "^1.44.0",
+    "@aws-cdk/aws-s3-deployment": "^1.44.0",
+    "@aws-cdk/core": "^1.44.0",
+    "@aws-cdk/custom-resources": "^1.44.0",
+    "constructs": "^3.0.3"
   },
   "bundledDependencies": [
     "aws-sdk",
