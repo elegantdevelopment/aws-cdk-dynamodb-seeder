@@ -49,7 +49,7 @@ export class Seeder extends Construct {
     const fn = new Function(this, 'handler', {
       runtime: Runtime.NODEJS_12_X,
       handler: 'index.handler',
-      timeout: Duration.seconds(60),
+      timeout: Duration.seconds(900),
       code: Code.fromInline(`
 console.log('function loaded');
 
