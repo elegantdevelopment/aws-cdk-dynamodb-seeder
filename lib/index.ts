@@ -6,6 +6,7 @@ import { BucketDeployment, Source } from '@aws-cdk/aws-s3-deployment';
 import { AwsCustomResource, AwsSdkCall, AwsCustomResourcePolicy } from '@aws-cdk/custom-resources';
 import * as tmp from 'tmp';
 import * as fs from 'fs';
+import { BucketEncryption } from '@aws-cdk/aws-s3/lib/bucket';
 
 export interface Props {
   readonly table: Table;
@@ -31,6 +32,14 @@ export class Seeder extends Construct {
 
     const destinationBucket = new Bucket(this, 'acds-bucket', {
       removalPolicy: RemovalPolicy.DESTROY,
+      blockPublicAccess: {
+        blockPublicAcls: true,
+        blockPublicPolicy: true,
+        ignorePublicAcls: true,
+        restrictPublicBuckets: true,
+      },
+      encryption: BucketEncryption.S3_MANAGED,
+      enforceSSL: true,
     });
     tmp.setGracefulCleanup();
     tmp.dir((err, dir) => {
