@@ -1,5 +1,5 @@
 import { Construct, RemovalPolicy, Duration } from '@aws-cdk/core';
-import { Table } from '@aws-cdk/aws-dynamodb';
+import { ITable } from '@aws-cdk/aws-dynamodb';
 import { Function, Runtime, Code } from '@aws-cdk/aws-lambda';
 import { Bucket } from '@aws-cdk/aws-s3';
 import { BucketDeployment, Source } from '@aws-cdk/aws-s3-deployment';
@@ -8,7 +8,7 @@ import * as tmp from 'tmp';
 import * as fs from 'fs';
 
 export interface Props {
-  readonly table: Table;
+  readonly table: ITable;
   readonly setup: Item[];
   readonly teardown?: ItemKey[];
   readonly refreshOnUpdate?: boolean;
